@@ -12,7 +12,7 @@
 	"entrypoints": {
 		"client": [
 			{
-				"value": "noedar.skyqol.SkyutilsModClient",
+				"value": "noedar.skyqol.SkyQolModClient",
 				"adapter": "kotlin"
 			}
 		]
