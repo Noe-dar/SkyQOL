@@ -2,6 +2,7 @@ package noedar.skyqol.mixins
 
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
+import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 import com.mojang.brigadier.tree.ArgumentCommandNode
 import com.mojang.brigadier.tree.CommandNode
 import com.mojang.brigadier.tree.LiteralCommandNode
@@ -23,6 +24,12 @@ object ScoreboardDisplayHook {
 
     fun register(command: LiteralArgumentBuilder<CommandSource>) {
         commands.add(command)
+    }
+
+    fun registerEmptyCommands(commands: Iterable<String>) {
+        for(command in commands) {
+            register(literal(command))
+        }
     }
 }
 
