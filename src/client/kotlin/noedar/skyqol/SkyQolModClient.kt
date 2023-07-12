@@ -4,9 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
 import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
-import net.minecraft.client.gui.DrawContext
 import net.minecraft.command.CommandSource
-import net.minecraft.item.Items
 import noedar.skyqol.argument.LocationIdArgumentType
 import noedar.skyqol.mixins.ScoreboardDisplayHook
 
@@ -182,6 +180,5 @@ object SkyQolModClient : ClientModInitializer {
                 ScoreboardDisplayHook.isRegistered = false
             }
         }
-
     }
 }

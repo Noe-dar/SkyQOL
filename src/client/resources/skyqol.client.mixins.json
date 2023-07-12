@@ -4,9 +4,10 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "InventoryClientMixin",
-    "ScoreboardDisplayClientMixin",
     "ItemClientMixin",
-    "ItemStackClientMixin"
+    "ItemStackClientMixin",
+    "ParticleClientMixin",
+    "ScoreboardDisplayClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

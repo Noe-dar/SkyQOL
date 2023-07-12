@@ -44,8 +44,8 @@ enum class LocationId(private val inner: String) : StringIdentifiable {
     }
 
     companion object {
-        val CODEC = StringIdentifiable.createCodec { values() }!!
+        val CODEC = StringIdentifiable.createCodec { entries.toTypedArray() }!!
     }
 }
 
-object LocationIdArgumentType : EnumArgumentType<LocationId>(LocationId.CODEC,  { LocationId.values() })
+object LocationIdArgumentType : EnumArgumentType<LocationId>(LocationId.CODEC,  { LocationId.entries.toTypedArray() })
