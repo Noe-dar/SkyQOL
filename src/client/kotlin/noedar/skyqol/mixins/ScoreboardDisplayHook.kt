@@ -16,7 +16,7 @@ object ScoreboardDisplayHook {
     var isRegistered = false
     fun registerCommands(commandDispatcher: CommandDispatcher<CommandSource>) {
         isRegistered = true
-        for(command in commands) {
+        for (command in commands) {
             commandDispatcher.root.remove(command.literal)
             commandDispatcher.register(command)
         }
@@ -27,7 +27,7 @@ object ScoreboardDisplayHook {
     }
 
     fun registerEmptyCommands(commands: Iterable<String>) {
-        for(command in commands) {
+        for (command in commands) {
             register(literal(command))
         }
     }
@@ -43,8 +43,8 @@ private fun <S> RootCommandNode<S>.remove(command: String) {
     argumentsField.isAccessible = true
 
     val child = this.getChild(command)
-    if(child != null) {
-        val mutableMap = when(child) {
+    if (child != null) {
+        val mutableMap = when (child) {
             is LiteralCommandNode<*> -> literalField.get(this)
             is ArgumentCommandNode<*, *> -> argumentsField.get(this)
             else -> throw Exception("reached unreachable code")

@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemStackClientMixin {
     @Inject(method = "getDamage()I", at = @At("HEAD"), cancellable = true)
     private void getDamage(CallbackInfoReturnable<Integer> cir) {
-        if(PickonimbusHook.INSTANCE.isPickonimbus((ItemStack) (Object) this)) {
+        if (PickonimbusHook.INSTANCE.isPickonimbus((ItemStack) (Object) this)) {
             cir.setReturnValue(PickonimbusHook.INSTANCE.getDamage((ItemStack) (Object) this));
         }
     }

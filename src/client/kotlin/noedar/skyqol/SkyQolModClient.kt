@@ -175,6 +175,8 @@ object SkyQolModClient : ClientModInitializer {
             )
         )
 
+        EnderNodeHighlighter.init()
+
         ClientPlayConnectionEvents.JOIN.register { _, _, _ ->
             run {
                 ScoreboardDisplayHook.isRegistered = false
