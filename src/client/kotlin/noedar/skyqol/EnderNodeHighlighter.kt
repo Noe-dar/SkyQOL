@@ -10,6 +10,7 @@ import net.minecraft.network.packet.s2c.play.ParticleS2CPacket
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import noedar.skyqol.SkyQolModClient.CONFIG
 import noedar.skyqol.events.ParticleSpawnCallback
 import org.joml.Vector3d
 import java.util.concurrent.ConcurrentHashMap
@@ -80,6 +81,10 @@ object EnderNodeHighlighter {
     private fun onRender(worldRenderContext: WorldRenderContext) {
         val world = client.world!!
 
+
+        val parsedColor = Integer.parseInt(CONFIG.enderNodeHighlightColor.replaceFirst("#", ""), 16)
+        val color = Color(parsedColor)
+
         for ((enderNode, timestamp) in enderNodes) {
             if ((System.currentTimeMillis() - timestamp) >= 2000) {
                 enderNodes.remove(enderNode)
@@ -104,10 +109,10 @@ object EnderNodeHighlighter {
                 boundingBox.maxX + enderNode.x - cameraPos.x,
                 boundingBox.maxY + enderNode.y - cameraPos.y,
                 boundingBox.maxZ + enderNode.z - cameraPos.z,
-                0.5f,
-                0.5f,
-                0.5f,
-                0.5f
+                color.red,
+                color.green,
+                color.blue,
+                0.4f
             )
 
             WorldRenderer.drawShapeOutline(
@@ -117,9 +122,9 @@ object EnderNodeHighlighter {
                 enderNode.x - cameraPos.x,
                 enderNode.y - cameraPos.y,
                 enderNode.z - cameraPos.z,
-                0.5f,
-                0.5f,
-                0.5f,
+                color.red,
+                color.green,
+                color.blue,
                 1.0f,
                 true
             )
