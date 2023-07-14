@@ -6,9 +6,12 @@ import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
+import net.fabricmc.fabric.api.client.screen.v1.Screens
 import net.minecraft.command.CommandSource
 import noedar.skyqol.argument.LocationIdArgumentType
 import noedar.skyqol.config.SkyQolConfig
+import noedar.skyqol.features.EnderNodeHighlighterFeature
+import noedar.skyqol.features.IrisWarningFeature
 import noedar.skyqol.mixins.ScoreboardDisplayHook
 
 object SkyQolModClient : ClientModInitializer {
@@ -183,7 +186,8 @@ object SkyQolModClient : ClientModInitializer {
             )
         )
 
-        EnderNodeHighlighter.init()
+        EnderNodeHighlighterFeature.init()
+        IrisWarningFeature.init()
 
         ClientPlayConnectionEvents.JOIN.register { _, _, _ ->
             run {

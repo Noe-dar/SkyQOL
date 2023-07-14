@@ -1,4 +1,4 @@
-package noedar.skyqol
+package noedar.skyqol.features
 
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents
@@ -10,7 +10,9 @@ import net.minecraft.network.packet.s2c.play.ParticleS2CPacket
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import noedar.skyqol.Color
 import noedar.skyqol.SkyQolModClient.CONFIG
+import noedar.skyqol.equalWithError
 import noedar.skyqol.events.ParticleSpawnCallback
 import org.joml.Vector3d
 import java.util.concurrent.ConcurrentHashMap
@@ -20,7 +22,7 @@ import kotlin.math.floor
 
 // https://github.com/Soopyboo32/SoopyV2/blob/master/src/features/events/index.js#L767
 // At least it works
-object EnderNodeHighlighter {
+object EnderNodeHighlighterFeature {
     enum class ParticleOperation {
         NORMAL, WITH_ERROR;
 
@@ -73,9 +75,9 @@ object EnderNodeHighlighter {
     private val client = MinecraftClient.getInstance()
 
     fun init() {
-        ParticleSpawnCallback.EVENT.register(::onParticle)
+        ParticleSpawnCallback.EVENT.register(EnderNodeHighlighterFeature::onParticle)
 
-        WorldRenderEvents.AFTER_TRANSLUCENT.register(::onRender)
+        WorldRenderEvents.AFTER_TRANSLUCENT.register(EnderNodeHighlighterFeature::onRender)
     }
 
     private fun onRender(worldRenderContext: WorldRenderContext) {
